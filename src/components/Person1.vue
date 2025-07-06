@@ -12,55 +12,13 @@
   </div>
 </template>
 <script lang='ts' setup name='Person1'>
-import { ref, reactive, toRefs, computed, watch } from "vue";
-let name = ref("sgf");
-let age = ref(10);
-
-let tel = "157293120310";
-let num1 = ref(0);
-let num2 = ref(0);
-let res = computed(() => {
-  return Number(num1.value) + Number(num2.value);
-});
-let carMsg1 = reactive({
-  car: "轿车",
-  brand: "奔驰",
-});
-
-let carMsg2 = ref({
-  car: "电动车",
-  brand: "雅迪",
-});
-
-let { car, brand } = toRefs(carMsg1);
-
-function changeName() {
-  name.value = "jf2000";
-}
-function changeAge() {
-  age.value += 1;
-}
-function showTel() {
-  console.log(tel);
-}
-function changeCar() {
-  // carMsg2.value.car = "自行车";
-  // carMsg2.value.brand = "凤凰";
-  car.value = "自行车";
-  brand.value = "凤凰";
-  // console.log(carMsg2.value);
-}
-watch(
-  carMsg1,
-  (newVal, oldVal) => {
-    console.log("carmsg1改变了", newVal);
-  },
-);
-watch(age, (newVal, oldVal) => {
-  if (newVal >= 18) {
-    alert("您成年啦！");
-  }
+import useMan from '@/hooks/useMan'
+import useCar from '@/hooks/useCar'
+let { name, age, num1, num2, res, changeName, changeAge, showTel } = useMan()
+let { carMsg1, carMsg2, changeCar } = useCar()
+defineExpose({
+  name,
+  age,
 });
 </script>
-<style>
-</style>
+<style></style>

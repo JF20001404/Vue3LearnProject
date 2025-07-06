@@ -10,7 +10,15 @@
   </div>
 </template>
 <script lang='ts' setup name='Person2'>
-import { ref, reactive, toRefs, computed, watch } from "vue";
+import { ref, reactive, toRefs, computed, watch, defineProps, withDefaults } from "vue";
+import { type Persons } from "@/types";
+
+let x = withDefaults(defineProps<{ list: Persons }>(), {
+  list: () => [{ name: 'xxx', age: 0 }]
+})
+
+console.log(x['list'])
+
 let name = ref("sgf");
 let age = ref(10);
 
@@ -57,5 +65,4 @@ watch(
   { deep: true }
 );
 </script>
-<style>
-</style>
+<style></style>
