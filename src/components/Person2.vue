@@ -17,7 +17,7 @@ let x = withDefaults(defineProps<{ list: Persons }>(), {
   list: () => [{ name: 'xxx', age: 0 }]
 })
 
-console.log(x['list'])
+// console.log(x['list'])
 
 let name = ref("sgf");
 let age = ref(10);
